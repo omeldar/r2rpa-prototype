@@ -172,6 +172,18 @@ I took these steps to resolve this (last updated 2024-10-25):
         pacman -S wingw-w64-x86_64-gtk3
         ```
 
+        If you're having issues with the second command, try running the following instead:
+
+        ```
+        pacman -S mingw-w64-ucrt-x86_64-gtk3
+        ```
+
+        If that still doesn't work, try:
+
+        ```
+        pacman -S mingw-w64-clang-x86_64-gtk3
+        ```
+
     - Add `C:\msys64\mingw64\bin` to your system's PATH.
 
 2. Install Microsoft Visual C++ Build Tools:
