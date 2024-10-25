@@ -37,7 +37,7 @@ The first step is to set up a virtual environment:
     - On Windows:
 
         ```
-        > r2rpa\Scripts\activate
+        r2rpa\Scripts\activate
         ```
 
     - On Linux (NixOS):
