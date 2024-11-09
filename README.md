@@ -46,6 +46,7 @@ This guide will help you set up the project with **Pygame** on **WSL**.
     ```bash
     pip install --upgrade pip
     pip install pygame
+    pip install spicy
     ```
 
 ---
