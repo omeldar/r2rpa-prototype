@@ -19,8 +19,6 @@ image_path = "media/2D-Suurstoffi.png"
 background_image = pygame.image.load(image_path)
 background_image = pygame.transform.scale(background_image, (screen_width, screen_height))
 
-# Define colors
-BLACK = (0, 0, 0)
 RED = (200, 25, 25)
 
 # Define control points as relative positions (percentages of the original image dimensions)
@@ -44,7 +42,6 @@ relative_control_points = [
     (0.88, 0.43),
     (0.91, 0.28),
     (0.87, 0.27)
-
 ]
 
 # Convert relative points to absolute coordinates based on the screen size
