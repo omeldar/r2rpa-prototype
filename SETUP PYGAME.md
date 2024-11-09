@@ -1,6 +1,6 @@
 # Pygame Project Setup on WSL (Windows Subsystem for Linux)
 
-This guide will help you set up the project with **Pygame** on **WSL**.
+This guide will help you set up a basic project with **Pygame** on **WSL** for developing 2D animations and games.
 
 ---
 
@@ -50,9 +50,43 @@ This guide will help you set up the project with **Pygame** on **WSL**.
 
 ---
 
-Run the script (in the virtual environment):
-```
-python main.py
-```
+## Step 4: Verify the Installation
 
-You should see a Pygame window if everything is set up correctly.
+1. Create a test file named `main.py`:
+
+    ```python
+    # main.py
+
+    import pygame
+    import sys
+
+    pygame.init()
+    screen = pygame.display.set_mode((800, 600))
+    pygame.display.set_caption("Pygame Test Window")
+
+    while True:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+        
+        screen.fill((0, 128, 255))
+        pygame.display.flip()
+    ```
+
+2. Run the script:
+
+    ```bash
+    python main.py
+    ```
+
+   You should see a blue Pygame window if everything is set up correctly.
+
+---
+
+## Troubleshooting
+
+- **Display Issues**: If Pygame fails to open a display window, use an X11 display server like [VcXsrv](https://sourceforge.net/projects/vcxsrv/) or [X410](https://x410.dev/). Configure it by setting the display environment variable:
+
+  ```bash
+  export DISPLAY=:0
