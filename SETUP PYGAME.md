@@ -74,19 +74,10 @@ This guide will help you set up a basic project with **Pygame** on **WSL** for d
         pygame.display.flip()
     ```
 
-2. Run the script:
+2. Run the script (in the virtual environment):
 
     ```bash
     python main.py
     ```
 
-   You should see a blue Pygame window if everything is set up correctly.
-
----
-
-## Troubleshooting
-
-- **Display Issues**: If Pygame fails to open a display window, use an X11 display server like [VcXsrv](https://sourceforge.net/projects/vcxsrv/) or [X410](https://x410.dev/). Configure it by setting the display environment variable:
-
-  ```bash
-  export DISPLAY=:0
+   You should see a Pygame window if everything is set up correctly.
