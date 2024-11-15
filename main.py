@@ -1,8 +1,12 @@
-    # main.py
+# main.py
 import pygame
 import sys
 import time
 import numpy as np
+
+from path_config import s1_s41, s1_s12, s12_s41
+from utils import get_absolute_points, draw_path_slowly
+from path_drawer import draw_selected_path
 
 pygame.init()
 
@@ -23,100 +27,12 @@ RED = (200, 25, 25)
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 
-# Define control points as relative positions (percentages of the original image dimensions)
-s1_s41 = [
-    (0.17, 0.85),
-    (0.18, 0.91),
-    (0.26, 0.87),
-    (0.355, 0.84),
-    (0.358, 0.755),
-    (0.445, 0.72),
-    (0.46, 0.698),
-    (0.54, 0.679),
-    (0.565, 0.65),
-    (0.62, 0.637),
-    (0.658, 0.598),
-    (0.72, 0.586),
-    (0.748, 0.59),
-    (0.79, 0.568),
-    (0.791, 0.54),
-    (0.83, 0.523),
-    (0.88, 0.43),
-    (0.91, 0.28),
-    (0.87, 0.27)
-]
-
-# Define control points for S1 to S12
-s1_s12 = [
-    (0.17, 0.85),
-    (0.18, 0.91),
-    (0.26, 0.87),
-    (0.355, 0.84),
-    (0.358, 0.755),
-    (0.445, 0.72),
-    (0.46, 0.698),
-    (0.54, 0.679),
-    (0.555, 0.67),
-    (0.567, 0.73)
-]
-
-# Define control points for S12 to S41
-s12_s41 = [
-    (0.567, 0.73),
-    (0.555, 0.67),
-    (0.565, 0.65),
-    (0.62, 0.637),
-    (0.658, 0.598),
-    (0.72, 0.586),
-    (0.748, 0.59),
-    (0.79, 0.568),
-    (0.791, 0.54),
-    (0.83, 0.523),
-    (0.88, 0.43),
-    (0.91, 0.28),
-    (0.87, 0.27)
-]
-
-# Convert relative points to absolute coordinates based on the screen size
-def get_absolute_points(relative_points, screen_width, screen_height):
-    return [(int(x * screen_width), int(y * screen_height)) for x, y in relative_points]
-
 # Generate absolute points for the current screen size
 s1_s41_points = get_absolute_points(s1_s41, screen_width, screen_height)
 s1_s12_points = get_absolute_points(s1_s12, screen_width, screen_height)
 s12_s41_points = get_absolute_points(s12_s41, screen_width, screen_height)
 
 control_points = s1_s41_points  # Default to S1 to S41 path
-
-# Function to draw the path gradually
-def draw_path_slowly(screen, background_image, path_points, color, width=3, delay=0.1):
-    for i in range(1, len(path_points)):
-        # Draw the background image to clear previous drawings
-        screen.blit(background_image, (0, 0))
-        
-        # Draw the line segment up to the current point
-        pygame.draw.lines(screen, color, False, path_points[:i+1], width)
-        
-        # Update the display
-        pygame.display.flip()
-        
-        # Wait for a short period to create animation effect
-        time.sleep(delay)
-
-# Function to draw the path between selected points
-def draw_selected_path(screen, background_image, control_points, color, width=3):
-    # Always draw the full path
-    path_points = control_points
-    
-    # Draw the background image
-    screen.blit(background_image, (0, 0))
-    
-    # Draw the selected path
-    pygame.draw.lines(screen, color, False, path_points, width)
-    
-    # Update the display
-    pygame.display.flip()
-    return path_points
 
 # Main loop
 running = True
