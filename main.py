@@ -89,7 +89,7 @@ s12_s41_points = get_absolute_points(s12_s41, screen_width, screen_height)
 control_points = s1_s41_points  # Default to S1 to S41 path
 
 # Function to draw the path gradually
-def draw_path_slowly(screen, background_image, path_points, color, width=3, delay=0.05):
+def draw_path_slowly(screen, background_image, path_points, color, width=3, delay=0.1):
     for i in range(1, len(path_points)):
         # Draw the background image to clear previous drawings
         screen.blit(background_image, (0, 0))
@@ -189,11 +189,22 @@ while running:
                 # Draw the new path
                 if dropdown_options[from_index] == 'S1' and dropdown_options[to_index] == 'S12':
                     control_points = s1_s12_points
+                elif dropdown_options[from_index] == 'S12' and dropdown_options[to_index] == 'S1':
+                    control_points = list(reversed(s1_s12_points))
+                elif dropdown_options[from_index] == 'S1' and dropdown_options[to_index] == 'S41':
+                    control_points = s1_s41_points
+                elif dropdown_options[from_index] == 'S41' and dropdown_options[to_index] == 'S1':
+                    control_points = list(reversed(s1_s41_points))
+                elif dropdown_options[from_index] == 'S12' and dropdown_options[to_index] == 'S41':
+                    control_points = s12_s41_points
+                elif dropdown_options[from_index] == 'S41' and dropdown_options[to_index] == 'S12':
+                    control_points = list(reversed(s12_s41_points))
                 elif dropdown_options[from_index] == 'S12' and dropdown_options[to_index] == 'S41':
                     control_points = s12_s41_points
                 else:
                     control_points = s1_s41_points
-                current_path_points = draw_selected_path(screen, background_image, control_points, RED, 10)
+                draw_path_slowly(screen, background_image, control_points, RED, 10, delay=0.1)
+                current_path_points = control_points
                 path_drawn = True
             else:
                 dropdown_open = False
