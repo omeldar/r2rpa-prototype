@@ -1,0 +1,17 @@
+version: "3.8"
+services:
+  pygame-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/app
+    environment:
+      - DISPLAY=${DISPLAY}
+      - SDL_VIDEODRIVER=x11
+    network_mode: "host" # Allows the container to access the host's display
+    devices:
+      - "/dev/snd" # Allows access to audio devices if needed
+    stdin_open: true
+    tty: true
+
